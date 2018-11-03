@@ -24,6 +24,7 @@ bool Debug::Finalize()
 		return false;
 
 	DebugHandler::file.flush();
+	DebugHandler::file.close();
 
 	return true;
 }
