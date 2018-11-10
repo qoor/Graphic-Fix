@@ -8,7 +8,7 @@ using std::string;
 
 GraphicRestore* gr;
 
-GraphicRestore::GraphicRestore() : sunflare(1), grass(1), shadows(1), motionblur(0), zonenames(0), carnames(0), widescreenfix("4:3"), framelimit(60)
+GraphicRestore::GraphicRestore() : sunflare(1), grass(1), shadows(0), motionblur(0), zonenames(0), carnames(1), widescreenfix("4:3"), framelimit(60)
 {
 	DEBUG << "객체 포인터 저장." << std::endl;
 
@@ -107,8 +107,8 @@ bool GraphicRestore::ApplyGraphicSettings()
 	// Increase intensity of vehicle tail light corona
 	MemPut<BYTE>(0x006E1A22, 0xF0);
 
-	// Fix killing ped during car jacking
-	MemPut<BYTE>(0x63F576, 0xEB);
+	/*// Fix killing ped during car jacking
+	MemPut<BYTE>(0x63F576, 0xEB);*/
 
 	// Aircraft Max Height checks are at 0x6D2614 and 0x6D2625 edit the check to use our own float.
 	MemPut(0x006D2614, &aircraftMaxHeight);
