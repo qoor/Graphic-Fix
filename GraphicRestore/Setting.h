@@ -6,8 +6,10 @@
 
 #include <iostream>
 
+extern GraphicRestore* gr;
+
 class Setting
 {
 public:
-	Setting(GraphicRestore& orderobj, const std::string& file_name);
+	Setting(const std::string& file_name);
 };

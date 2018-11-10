@@ -149,17 +149,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GraphicRestore.h" />
+    <ClInclude Include="HookSystem.h" />
     <ClInclude Include="ini.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TimerChecker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GraphicRestore.cpp" />
+    <ClCompile Include="HookSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ini.cpp" />
     <ClCompile Include="Memory.cpp" />

@@ -2,12 +2,23 @@
 
 #include "GraphicRestore.h"
 #include "Setting.h"
+#include "FrameLimiter.h"
 
 using std::string;
 
-GraphicRestore::GraphicRestore() : sunflare(1), grass(1), shadows(1), motionblur(0), zonenames(0), carnames(0), widescreenfix("4:3")
+GraphicRestore* gr;
+
+GraphicRestore::GraphicRestore() : sunflare(1), grass(1), shadows(1), motionblur(0), zonenames(0), carnames(0), widescreenfix("4:3"), framelimit(60)
 {
-	Setting setting(*this, "GraphicSettings.ini");
+	DEBUG << "객체 포인터 저장." << std::endl;
+
+	gr = this;
+
+	DEBUG << "설정을 불러옵니다." << std::endl;
+
+	Setting setting("GraphicSettings.ini");
+
+	DEBUG << "설정을 모두 불러왔습니다." << std::endl;
 
 	aircraftMaxHeight = 800.0f;
 	aircraftMaxVelocity = 1.5f;

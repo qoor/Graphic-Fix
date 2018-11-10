@@ -1,14 +1,16 @@
 #pragma once
 
 #include <Windows.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 #include "ini.h"
 #include "Debug.h"
 #include "Memory.h"
+#include "HookSystem.h"
 
-#include <iostream>
-#include <fstream>
-#include <string>
+//class FrameLimiter;
 
 class GraphicRestore
 {
@@ -20,6 +22,7 @@ private:
 	int zonenames;
 	int carnames;
 	std::string widescreenfix;
+	unsigned int framelimit;
 
 	float aspectratio;
 	float sniperCrosshairScale;
@@ -34,20 +37,21 @@ public:
 	~GraphicRestore();
 	bool ApplyGraphicSettings();
 
-	int GetSunflareEnable() { return sunflare; }
-	int GetGrassEnable() { return grass; }
-	int GetShadowsEnable() { return shadows; }
-	int GetMotionblurEnable() { return motionblur; }
-	int GetZonenamesEnable() { return zonenames; }
-	int GetCarnamesEnable() { return carnames; }
+	inline int GetSunflareEnable() { return sunflare; }
+	inline int GetGrassEnable() { return grass; }
+	inline int GetShadowsEnable() { return shadows; }
+	inline int GetMotionblurEnable() { return motionblur; }
+	inline int GetZonenamesEnable() { return zonenames; }
+	inline int GetCarnamesEnable() { return carnames; }
 	std::string& GetWidescreenfix() { return widescreenfix; }
+	inline unsigned int GetFrameLimit() { return framelimit; }
 
-	void SetSunflareEnable(int enable) { sunflare = enable; }
-	void SetGrassEnable(int enable) { grass = enable; }
-	void SetShadowsEnable(int enable) { shadows = enable; }
-	void SetMotionblurEnable(int enable) { motionblur = enable; }
-	void SetZonenamesEnable(int enable) { zonenames = enable; }
-	void SetCarnamesEnable(int enable) { carnames = enable; }
+	inline void SetSunflareEnable(int enable) { sunflare = enable; }
+	inline void SetGrassEnable(int enable) { grass = enable; }
+	inline void SetShadowsEnable(int enable) { shadows = enable; }
+	inline void SetMotionblurEnable(int enable) { motionblur = enable; }
+	inline void SetZonenamesEnable(int enable) { zonenames = enable; }
+	inline void SetCarnamesEnable(int enable) { carnames = enable; }
 	void SetWidescreenfix(const std::string& value)
 	{
 		widescreenfix = value;
@@ -59,4 +63,5 @@ public:
 		else if (widescreenfix.compare("16:10") == 0)
 			aspectratio = 16 / 10.f;
 	}
+	inline void SetFrameLimit(unsigned int value) { framelimit = value; }
 };

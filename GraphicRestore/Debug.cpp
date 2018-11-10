@@ -6,7 +6,7 @@ namespace DebugHandler {
 	std::ofstream file;
 }
 
-int debug_use = 0;
+static int debug_use = 0;
 
 bool Debug::Initialize(const std::string& file_name)
 {

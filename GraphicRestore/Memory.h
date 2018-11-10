@@ -2,8 +2,11 @@
 
 #include <iostream>
 
+typedef unsigned int uint;
+
 void MemCopy(void* ptr, const void* src, int length);
 void MemSet(void* ptr, int value, int amount);
+bool IsSlowMem(const void* pAddr, uint uiAmount);
 
 template <class T>
 void MemPut(int ptr, const T value, int size = sizeof(T))
