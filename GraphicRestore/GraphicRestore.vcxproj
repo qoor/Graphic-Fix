@@ -161,6 +161,7 @@
     <ClInclude Include="TimerChecker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CrashFix.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GraphicRestore.cpp" />

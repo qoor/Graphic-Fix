@@ -9,6 +9,7 @@
 #include "Debug.h"
 #include "Memory.h"
 #include "HookSystem.h"
+#include "FrameLimiter.h"
 
 //class FrameLimiter;
 
@@ -29,6 +30,8 @@ private:
 	float aircraftMaxHeight;
 	float aircraftMaxVelocity;
 	float aircraftMaxVelocity_Square;
+
+	FrameLimiter frameLimiter;
 
 	//HANDLE process;
 
@@ -64,4 +67,6 @@ public:
 			aspectratio = 16 / 10.f;
 	}
 	inline void SetFrameLimit(unsigned int value) { framelimit = value; }
+
+	void InitCrashFix();
 };

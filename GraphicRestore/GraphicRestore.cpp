@@ -2,7 +2,6 @@
 
 #include "GraphicRestore.h"
 #include "Setting.h"
-#include "FrameLimiter.h"
 
 using std::string;
 
@@ -69,6 +68,7 @@ bool GraphicRestore::ApplyGraphicSettings()
 		MemPut<long long>(0x005720A5, 1099511527144LL, 5);
 		MemPut<int>(0x00590099, 427475688, 5);
 		MemPut<long long>(0x005952A6, 1099508450792LL, 5);
+		MemPut<BYTE>(0x0097537C, 0xCC);
 	}
 
 	if (carnames)
@@ -100,9 +100,6 @@ bool GraphicRestore::ApplyGraphicSettings()
 
 	// FPS Delay (12ms?) remover
 	*(reinterpret_cast<BYTE*>(0x00BAB318)) = 0; *(reinterpret_cast<BYTE*>(0x0053E94C)) = 0;
-
-	// Anti-crash
-	MemCopy(reinterpret_cast<void*>(0x82C5CC), "\xC9\xC3", 2);
 
 	// Increase intensity of vehicle tail light corona
 	MemPut<BYTE>(0x006E1A22, 0xF0);
@@ -185,6 +182,9 @@ bool GraphicRestore::ApplyGraphicSettings()
 	MemSet(reinterpret_cast<void*>(0x0072925D), 0x1, 1); // objects
 	MemSet(reinterpret_cast<void*>(0x00729263), 0x1, 1); // players
 
+	InitCrashFix();
+	frameLimiter.InitFrameLimiter();
+
 	DEBUG << "성공적으로 적용했습니다." << std::endl;
 
 	return true;
@@ -194,3 +194,4 @@ GraphicRestore::~GraphicRestore()
 {
 	Debug::Finalize();
 }
+
