@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "GraphicRestore.h"
+#include "FrameLimiter.h"
 #include "Setting.h"
 
 using std::string;
@@ -22,6 +23,10 @@ GraphicRestore::GraphicRestore() : sunflare(1), grass(1), shadows(0), motionblur
 	aircraftMaxHeight = 800.0f;
 	aircraftMaxVelocity = 1.5f;
 	aircraftMaxVelocity_Square = aircraftMaxVelocity * aircraftMaxVelocity;
+
+	direct3DHookManager = new CDirect3DHookManager();
+
+	ApplyHooks();
 }
 
 /*bool GraphicRestore::FindGameProcess()
@@ -190,8 +195,27 @@ bool GraphicRestore::ApplyGraphicSettings()
 	return true;
 }
 
+void GraphicRestore::ApplyHooks()
+{
+	direct3DHookManager->ApplyHook();
+}
+
 GraphicRestore::~GraphicRestore()
 {
 	Debug::Finalize();
 }
 
+void GraphicRestore::DoPreFramePulse()
+{
+
+}
+
+void GraphicRestore::OnDeviceRestore()
+{
+
+}
+
+void GraphicRestore::DoPostFramePulse()
+{
+	fl->EnsureFrameRateLimitApplied();
+}

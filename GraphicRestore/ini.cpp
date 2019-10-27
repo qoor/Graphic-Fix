@@ -74,9 +74,14 @@ bool Ini::GetValue(const std::string &line, double& src)
 {
 	std::string value;
 
-	GetValue(line, value);
+	if (GetValue(line, value))
+	{
+		src = std::stof(value);
 
-	src = std::stof(value);
+		return true;
+	}
+
+	return false;
 }
 
 bool Ini::Write(const string& key, const string& value)

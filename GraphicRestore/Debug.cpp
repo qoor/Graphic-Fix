@@ -6,8 +6,12 @@ namespace DebugHandler {
 	std::ofstream file;
 }
 
-static int debug_use = 0;
-
+#ifdef _DEBUG
+	static int debug_use = 1;
+#else
+	static int debug_use = 0;
+#endif
+	
 bool Debug::Initialize(const std::string& file_name)
 {
 	if (debug_use == 0 || DebugHandler::file.is_open())

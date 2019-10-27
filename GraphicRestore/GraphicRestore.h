@@ -10,6 +10,7 @@
 #include "Memory.h"
 #include "HookSystem.h"
 #include "FrameLimiter.h"
+#include "DirectX/CDirect3DHookManager.h"
 
 //class FrameLimiter;
 
@@ -33,12 +34,15 @@ private:
 
 	FrameLimiter frameLimiter;
 
+	CDirect3DHookManager* direct3DHookManager;
+
 	//HANDLE process;
 
 public:
 	GraphicRestore();
 	~GraphicRestore();
 	bool ApplyGraphicSettings();
+	void ApplyHooks();
 
 	inline int GetSunflareEnable() { return sunflare; }
 	inline int GetGrassEnable() { return grass; }
@@ -69,4 +73,10 @@ public:
 	inline void SetFrameLimit(unsigned int value) { framelimit = value; }
 
 	void InitCrashFix();
+
+	void DoPreFramePulse();
+	void OnDeviceRestore();
+	void DoPostFramePulse();
 };
+
+extern GraphicRestore* gr;

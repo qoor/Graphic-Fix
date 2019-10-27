@@ -19,10 +19,15 @@ void HOOK_CTaskSimpleSwim_ProcessSwimmingResistance();
 FrameLimiter::FrameLimiter()
 {
 	fl = this;
+	queuedFrameRateValid = false;
+	doneFrameRateLimit = false;
+	frameLimitEnabled = false;
 }
 
 void FrameLimiter::InitFrameLimiter()
 {
+	frameLimitEnabled = true;
+
 	HookInstall(HOOKPOS_CTimer_Update, reinterpret_cast<DWORD>(HOOK_CTimer_Update), HOOKSIZE_CTimer_Update);
 	HookInstall(HOOKPOS_CTaskSimpleSwim_ProcessSwimmingResistance, reinterpret_cast<DWORD>(HOOK_CTaskSimpleSwim_ProcessSwimmingResistance), 6);
 
@@ -34,21 +39,54 @@ void FrameLimiter::OnGametimerUpdate()
 	ApplyQueuedFrameRateLimit();
 }
 
+void FrameLimiter::EnsureFrameRateLimitApplied()
+{
+	if (frameLimitEnabled)
+	{
+		if (!doneFrameRateLimit)
+		{
+			ApplyFrameRateLimit();
+		}
+		doneFrameRateLimit = false;
+	}
+}
+
+void FrameLimiter::ApplyFrameRateLimit()
+{
+	doneFrameRateLimit = true;
+
+	uint uiUseRate = gr->GetFrameLimit();
+
+	if (uiUseRate > 0)
+	{
+		// Apply previous frame rate if is hasn't been done yet
+		ApplyQueuedFrameRateLimit();
+
+		// Limit is usually applied in OnGameTimerUpdate
+		queuedFrameRateValid = true;
+	}
+}
+
 void FrameLimiter::ApplyQueuedFrameRateLimit()
 {
-	const double dTargetTimeToUse = 1000.0 / gr->GetFrameLimit();
-
-	while (true)
+	if (queuedFrameRateValid)
 	{
-		double spare = dTargetTimeToUse - frameRateTimer.Get();
+		queuedFrameRateValid = false;
 
-		if (spare <= 0.0)
-			break;
-		else if (spare >= 2.0)
-			Sleep(1);
+		const double dTargetTimeToUse = 1000.0 / gr->GetFrameLimit();
+
+		while (true)
+		{
+			double spare = dTargetTimeToUse - frameRateTimer.Get();
+
+			if (spare <= 0.0)
+				break;
+			else if (spare >= 2.0)
+				Sleep(1);
+		}
+
+		frameRateTimer.Reset();
 	}
-
-	frameRateTimer.Reset();
 }
 
 void _declspec(naked) HOOK_CTimer_Update()

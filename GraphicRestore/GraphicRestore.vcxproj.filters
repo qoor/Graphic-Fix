@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\DirectX">
+      <UniqueIdentifier>{be17c86e-66a5-4838-aa0d-19467493f124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\DirectX\Sources">
+      <UniqueIdentifier>{6338f726-2514-42ec-ae78-8ea5215a6da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\DirectX\Headers">
+      <UniqueIdentifier>{7b132d7b-ab6c-4ff9-9a3c-e9192bf30e7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -39,6 +48,30 @@
     <ClInclude Include="Setting.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="HookSystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameLimiter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerChecker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\CDirect3DHookManager.h">
+      <Filter>소스 파일\DirectX\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\CDirect3DHook9.h">
+      <Filter>소스 파일\DirectX\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\CProxyDirect3D9.h">
+      <Filter>소스 파일\DirectX\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\CProxyDirect3DDevice9.h">
+      <Filter>소스 파일\DirectX\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\CDirect3DEvents9.h">
+      <Filter>소스 파일\DirectX\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -62,5 +95,32 @@
     <ClCompile Include="Setting.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="HookSystem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameLimiter.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashFix.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\CDirect3DHookManager.cpp">
+      <Filter>소스 파일\DirectX\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\CDirect3DHook9.cpp">
+      <Filter>소스 파일\DirectX\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\CProxyDirect3D9.cpp">
+      <Filter>소스 파일\DirectX\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\CProxyDirect3DDevice9.cpp">
+      <Filter>소스 파일\DirectX\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\CDirect3DEvents9.cpp">
+      <Filter>소스 파일\DirectX\Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore" />
   </ItemGroup>
 </Project>
